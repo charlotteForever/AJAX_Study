@@ -21,15 +21,15 @@ username=admin&password=admin
 ### 响应报文
 
 ```bash
-#行
+#行 200是响应状态码 OK是相应字符串
 HTTP/1.1	200	OK
-#头 以键值对的形式
+#响应头 以键值对的形式
 Content-Type:text/html;charset=utf-8
 Content-length:2048
 Content-encoding:gzip
 #空行
 
-#体
+#响应体
 <html>
 	<head>
 	</head>
@@ -43,3 +43,10 @@ Content-encoding:gzip
 
 ## express框架
 
+
+
+
+
+
+
+XHR:AJAX请求进行筛选

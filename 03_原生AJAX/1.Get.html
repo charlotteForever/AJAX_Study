@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX GET请求</title>
+    <style>
+        #result {
+            height: 100px;
+            width: 100px;
+            border: 1px solid purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <button>点我发送请求</button>
+        <br><br>
+        <div id="result"></div>
+    </div>
+    <script>
+        const btn = document.getElementsByTagName('button')[0];
+        btn.onclick = function () {
+            // console.log('btn')
+            // 1.创建对象
+            const xhr = new XMLHttpRequest();
+            // 设置请求的方法和url
+            xhr.open('GET', 'http://127.0.0.1:8000/server?a=100&b=200&c=300');
+            // xhr.open('GET', 'http://localhost:8000/server')
+
+            // 发送请求
+            xhr.send();
+            // 绑定事件，处理服务端返回的结果
+            // readystate是xhr对象中的属性，
+            // 0：未初始化 1：open方法调用完毕 2：send方法调用完毕 3：服务端返回了部分结果  4：服务端返回所有的结果
+            xhr.onreadystatechange = function () {
+                // 判断服务端是否返回所有的结果
+                if (xhr.readyState === 4) {
+                    // 判断响应的状态码
+                    if (xhr.status >= 200 && xhr.status < 280) {
+                        // 处理结果：行 头 空行 体
+                        console.log(xhr.status);//响应
+                        console.log(xhr.statusText);//响应字符串
+                        console.log(xhr.getAllResponseHeaders());//所有响应头
+                        console.log(xhr.response);//响应体
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>
+<!-- 这里send（）出错的 看一下刚开始的server的状态码，有可能是304，把判断条件调高就可以出来了 -->
