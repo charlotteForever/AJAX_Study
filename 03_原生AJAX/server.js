@@ -11,6 +11,10 @@ app.get('/server', (request, response) => {
     // 设置响应体
     response.send('你好！AJAX');
 });
+app.post('/server', (request, response) => {
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.send('你好！AJAX POST');
+})
 
 // 监听端口响应
 app.listen(8000, () => {

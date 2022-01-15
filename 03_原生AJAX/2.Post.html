@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX GET请求</title>
+    <style>
+        #result {
+            height: 100px;
+            width: 100px;
+            border: 1px solid purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="result"></div>
+    <script>
+        const elm = document.getElementById('result')
+        // 当鼠标经过
+        elm.addEventListener('mouseover', function () {
+            // 1.新建对象
+            const xhr = new XMLHttpRequest()
+            // 2.绑定请求类型和url
+            xhr.open('POST', 'http://127.0.0.1:8000/server')
+            // 3.发送请求
+            xhr.send()
+            // 4.绑定事件
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        elm.innerHTML = xhr.response
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
