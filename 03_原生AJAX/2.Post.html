@@ -25,8 +25,8 @@
             const xhr = new XMLHttpRequest()
             // 2.绑定请求类型和url
             xhr.open('POST', 'http://127.0.0.1:8000/server')
-            // 3.发送请求
-            xhr.send()
+            // 3.发送请求 另：post在send里传递参数
+            xhr.send('A=100&B=200&C=300')
             // 4.绑定事件
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
