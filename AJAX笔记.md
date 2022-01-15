@@ -75,8 +75,11 @@ xhr.setRequestHeader('name', 'atguigu')
 
 加了之后还是会报错，这是因为：
 
-未出现过的请求头，还会发送一个options请求来校验这个请求头到底可不可以用。但是一般来说服务端只有响应`get`和`post`请求的，不能响应额外的options请求
+> 未出现过的请求头，还会发送一个options请求来校验这个请求头到底可不可以用。但是一般来说服务端只有响应`get`和`post`请求的，不能响应额外的options请求
 
 处理：
 
-在server端，处理post请求改为处理all请求
+> 在server端，处理post请求改为处理all请求
+
+## 服务端响应JSON数据 
+

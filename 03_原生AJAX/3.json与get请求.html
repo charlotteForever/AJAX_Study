@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON与GET请求</title>
+    <style>
+        #result {
+            height: 100px;
+            width: 100px;
+            border: 1px solid purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="result"></div>
+    <script>
+        const elm = document.getElementById('result')
+        // 当鼠标经过
+        elm.addEventListener('mouseover', function () {
+            // 1.新建对象
+            const xhr = new XMLHttpRequest()
+            // 设置响应的格式
+            xhr.responseType = 'json'
+            // 2.绑定请求类型和url
+            xhr.open('GET', 'http://127.0.0.1:8000/json-server')
+            // 设置请求头
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            // 3.发送请求,也可在此传递参数
+            xhr.send('A=100&B=200&C=300')
+            // 4.绑定事件
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // 方法1:JSON方法转换
+                        // let stu = JSON.parse(xhr.response)
+                        // elm.innerHTML = stu.name
+                        // 方法2:自动转换
+                        console.log(xhr.response)
+                        elm.innerHTML = xhr.response.name
+
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

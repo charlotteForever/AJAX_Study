@@ -4,17 +4,13 @@ const express = require('express');
 const app = express();
 
 // 3. 创建路由规则
-// request是对请求报文的封装，response是对响应报文的封装
-app.get('/server', (request, response) => {
-    // 设置响应头 设置允许跨域
-    response.setHeader('Access-Control-Allow-Origin', '*');
-    // 设置响应体
-    response.send('你好！AJAX');
-});
-app.all('/server', (request, response) => {
-    response.setHeader('Access-Control-Allow-Origin', '*');
-    response.setHeader('Access-Control-Allow-Headers', '*');
-    response.send('你好！AJAX POST');
+app.all('/json-server', (request, response) => {
+    response.setHeader('Access-Control-Allow-Origin', '*');//设置允许跨域
+    response.setHeader('Access-Control-Allow-Headers', '*');//设置允许自定义请求头
+    // 发送对象类型的
+    let stu = { name: '张三', age: 19 }
+    let str = JSON.stringify(stu);
+    response.send(str)
 })
 
 // 监听端口响应
