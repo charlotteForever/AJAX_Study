@@ -50,3 +50,33 @@ Content-encoding:gzip
 
 
 XHR:AJAX请求进行筛选
+
+## 设置请求头
+
+一般来放身份校验的信息
+
+**可以加预定义的请求头**
+
+```javascript
+ xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+```
+
+**也可以加自定义的请求头**
+
+```javascript
+xhr.setRequestHeader('name', 'atguigu')
+```
+
+如果要自定义请求头的名字，需要在server端加上，允许任意类型的请求头
+
+```javascript
+    response.setHeader('Access-Control-Allow-Headers', '*');
+```
+
+加了之后还是会报错，这是因为：
+
+未出现过的请求头，还会发送一个options请求来校验这个请求头到底可不可以用。但是一般来说服务端只有响应`get`和`post`请求的，不能响应额外的options请求
+
+处理：
+
+在server端，处理post请求改为处理all请求

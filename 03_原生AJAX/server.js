@@ -11,8 +11,9 @@ app.get('/server', (request, response) => {
     // 设置响应体
     response.send('你好！AJAX');
 });
-app.post('/server', (request, response) => {
+app.all('/server', (request, response) => {
     response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Headers', '*');
     response.send('你好！AJAX POST');
 })
 
