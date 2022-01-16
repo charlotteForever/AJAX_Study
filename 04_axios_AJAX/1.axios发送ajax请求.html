@@ -33,6 +33,7 @@
                 console.log(value);
             });
         }
+        // POST请求
         btns[1].onclick = function () {
             axios.post('/axios-server', {
                 // 请求体信息
@@ -48,12 +49,33 @@
                     age: 20
                 }
             })
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(err => {
-                    console.error(err);
-                })
+        }
+        // 通用方法发送请求
+        btns[2].onclick = function () {
+            axios({
+                method: 'post',
+                // url
+                url: '/axios-server',
+                // url参数
+                params: {
+                    level: 9
+                },
+                // 请求头
+                headers: {
+                    a: 100,
+                    b: 200
+                },
+                // 请求体
+                data: {
+                    username: 'guigu',
+                    psw: '1231sd'
+                }
+            }).then((response) => {
+                // 状态码
+                console.log(response.status)
+                // 状态字符串
+                console.log(response.statusText)
+            })
         }
     </script>
 </body>
