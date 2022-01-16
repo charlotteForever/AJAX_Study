@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>fetch发送请求</button>
+    <script>
+        const btn = document.getElementsByTagName('button')[0]
+        btn.onclick = function () {
+            // 直接在第一个参数里设置url和url参数
+            fetch('http://127.0.0.1:8000/fetch-server?level=10', {
+                // 请求方法
+                method: 'post',
+                // 请求头
+                headers: {
+                    a: 100,
+                    b: 200
+                },
+                //请求体
+                body: 'username=admin&psw=admin'
+            }).then(response => {
+                console.log(response.status)
+
+                // 如果要拿到请求体，还要再获取一次
+                return response.json()
+            }).then(response => {
+                // 拿到请求体
+                console.log(response)
+            })
+        }
+    </script>
+</body>
+
+</html>

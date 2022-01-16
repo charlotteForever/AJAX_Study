@@ -141,3 +141,4 @@ xhr.onerror = function () {
 
 ## AXIOS AJAX
 
+## fetch发送请求
