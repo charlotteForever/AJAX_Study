@@ -19,6 +19,14 @@ app.all('/delay', (request, response) => {
     }, 3000)
 })
 
+// 针对axios
+app.all('/axios-server', (request, response) => {
+    response.setHeader('Access-Control-Allow-Origin', '*');//设置允许跨域
+    response.setHeader('Access-Control-Allow-Headers', '*');//设置允许自定义请求头
+    let data = { name: 'caicai' }
+    response.send(JSON.stringify(data))
+})
+
 app.listen(8000, () => {
     console.log('服务已经启动，8000端口监听中...');
 })
