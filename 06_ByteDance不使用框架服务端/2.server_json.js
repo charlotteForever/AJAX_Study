@@ -12,10 +12,19 @@ const server = http.createServer((requst, response) => {
     requst.on('end', () => {
         // bufs多个缓冲区先转为一个缓冲区(concat);在转为字符
         const buf = Buffer.concat(bufs).toString('utf8')
-        // 字符转为json
-        JSON.parse(buf)
+        try {
+            // 字符转为json
+            const ret = JSON.parse(buf)
+            const msg = ret.msg | 'hello!'
+            const responseJson = {
+                msg: `receive: ${msg}`
+            }
+            response.setHeader('Content-Type', 'application / json')
+            response.end(JSON.stringify(responseJson))
+        } catch (err) {
+            response.end('invalid json')
+        }
     })
-    // json数据的msg字段
 })
 
 server.listen(port, () => {
